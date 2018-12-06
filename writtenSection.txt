@@ -39,14 +39,17 @@ Answer each question in a written format
 
 
 8. How does a prototype work?
-
+    Prototypes are shared by all objects created with the same constructor. They are often for shared methods. However, if you set a variable as a prototype, if it's manipulated by a child object, it will change it's value for all the other children of that constructor. Prototypes are also built in to JavaScript, such as for array methods like pop() or shift(). You generally want to avoid altering the built-in methods though. 
 
 
 9. Describe what a component-based framework/library is?
-
+    A component-based architecture breaks up a page into smaller sections called components. Components are reusable and can contain and manage their own state. By breaking up a page into components, it allows updates to sections of the page and for the DOM to update without needing to re-render the entire page. The end result is a more responsive and efficient web app. React is a good example of a component-based framework.
 
 
 10. What is the component lifecycle in React?
+    The lifecycle of a component can be broken up into three main sections: mounting, updating, and unmounting. These lifecycle methods allow you to execute tasks at different points of a component's life. the componentDidMount is called after the component is rendered to the DOM. It's the first place you can start calling functions in your component. The componentDidUpdate is triggered when the component's props change. Finally, the componentWillUnmount method happens as the component is being removed from the DOM. There are more methods available, but those are the most common.
+
+
 
 11. What is REST? (not just a description of the acronym)
     REST is representational state transfer and it's basically a set of rules for how a web service should be accessed. For example, RESTful APIs follow the rest architecture and therefore have a base URL (which can include further paths/parameters) and are manipulated with HTTP methods (GET, POST, PUT, or DELETE).
