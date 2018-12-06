@@ -1,28 +1,58 @@
 Answer each question in a written format
 
 1. What does semantic HTML mean?
+    Semantic HTML is when you use tags with meaning, such as <p> for a paragraph or <code> for a block of code. Basically, it's the opposite of just using div for everything. Making your HTML semantic makes it a lot more readable to other developers. It can also aid accessibility for screen readers by giving them context. 
 
 2. What is the box model?
+    The box model is how all html objects are treated as boxes in CSS. There are three different layers in the box model: margin, border, and padding. The border is the actual outline of the content, while margin manipulates the area outside of the border and padding is the area between the border and the inside content. It's also important to use box-sizing: border box, which prevents padding from increasing the size of the border and instead pushes on the inside content. 
+
 
 3. What is the difference between IDs and Classes?
+    Beyond the obvious difference of how you access them (. for classes, and # for ids), IDs have a higher specificity. This means that if a tag has conflicting class and id styles, the id will override the style of the class.
 
 4. What is z-index (CSS property) useful for?
+    The z-index property brings things to the top/front of the page. It's important for things like modals and dropdown menus so that they always overlap the rest of the page.
 
 5. Summarize what the keyword 'this' is used for?
+    The keyword 'this' gives context to variables or functions. For example, in React 'this' is used to give state the context of the component. You also have to bind functions in react so that they can access this.state. It's also used for methods within objects to scope it to use variables within the same object.
 
 6. What is a callback? What are common uses for callbacks in JavaScript?
+    A callback is a function that is passed as a parameter to another function and is called within the outer function. A good example is that this.setState can take a callback as a second parameter that will be called after the state is set. Array methods also require callbacks, which are often executed for every element in the array.
 
 7. What is a closure and why is it useful?
+    A closure is basically two nested functions that enclose variables, stopping them from being accessed at a global scope. Instead these variables are manipulated by the inner function that is called when the outer function is called. These variables to retain data changes after they're called and they're reusable, meaning you can make several variables with different names from a single closure. It's useful in situations if you want to make a variable private and only allow it to be manipulated in predefined ways.
+
+    Example:
+
+     function count(){
+        let num = 0; //locally scoped variable
+         return function inner(){
+             return num+=1;
+        }
+    }
+    const count1 = count(); //this is the same as calling inner because count returns inner invoked
+    const count2 = count(); 
+
+    count1(); //returns 1
+    count1(); //returns 2
+    count2(); //returns 1 because its internal num is separate from count1
+
 
 8. How does a prototype work?
 
+
+
 9. Describe what a component-based framework/library is?
+
+
 
 10. What is the component lifecycle in React?
 
 11. What is REST? (not just a description of the acronym)
+    REST is representational state transfer and it's basically a set of rules for how a web service should be accessed. For example, RESTful APIs follow the rest architecture and therefore have a base URL (which can include further paths/parameters) and are manipulated with HTTP methods (GET, POST, PUT, or DELETE).
 
 12. Name three common ways of getting data from a request (in Express.JS):
+    The three that I'm most familiar with are req.body, req.params, and req.query. Req.body pulls off the object that is sent along with the request but it requires middleware such a body-parser in order to access it. Req.params are the variables given at the end of the request url (ex: for /api/doctor/:id id is a required param). Req.query is optional information and defaults to an empty object if it doesn't exist. 
 
 
 
@@ -36,10 +66,22 @@ email varchar(255)
 
 13. Given the Schema above, write the following four basic CRUD db queries using postgres syntax
 
--Get all users:
+-Get all users: 
+    SELECT * FROM users
 
 -Create a new user with the name of 'your name' and an email of 'fake@fake.com':
+    INSERT INTO users(name, email)
+    VALUES ('your name', 'fake@fake.com')
 
 -Update the newly created user's name to 'Bobby Boy':
+    UPDATE users
+    SET name = 'Bobby Boy'
+    WHERE email = 'fake@fake.com'
+
+    (note: it would be more ideal to do WHERE on the id, but I'm not sure what the id is since I can't see the data in the table)
 
 -Delete the newly updated user:
+    DELETE FROM users
+    WHERE name='Bobby Boy' AND email='fake@fake.com'
+
+    (note: again, I'd rather use id since it's unique, but I don't know the id, unless we're supposed to assume that we made the first user and it would be id = 1)
